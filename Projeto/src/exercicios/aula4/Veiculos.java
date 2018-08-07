@@ -1,4 +1,4 @@
-package exemplos;
+package exercicios.aula4;
 
 public class Veiculos {
 	private int roda;
