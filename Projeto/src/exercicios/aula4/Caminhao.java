@@ -26,6 +26,7 @@ public class Caminhao extends Veiculos {
 		this.carroceria = carroceria;
 	}
 
+	
 	public void carregar() {
 		System.out.println("Carregando");
 	}
