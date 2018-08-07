@@ -1,6 +1,6 @@
 package exercicios.aula4;
 
-public class Carroceria {
+public class Carroceria { 
 	private double tamanho;
 	private boolean cheio;
 	

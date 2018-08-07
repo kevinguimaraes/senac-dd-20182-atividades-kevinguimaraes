@@ -2,7 +2,7 @@ package exercicios.aula4;
 
 public class Caminhao extends Veiculos {
 	private int eixos;
-	private Carroceria carroceria;
+	private Carroceria carroceria; 
 
 	public Caminhao(int roda, String combustivel, double potencia, double tanque, String marca, String modelo, int eixos, Carroceria carroceria) {
 		super(roda, combustivel, potencia, tanque, marca, modelo);
