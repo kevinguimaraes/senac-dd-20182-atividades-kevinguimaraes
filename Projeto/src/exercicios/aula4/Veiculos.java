@@ -5,12 +5,17 @@ public class Veiculos {
 	private String combustivel;
 	private double potencia;
 	private double tanque;
-	
-	public Veiculos(int roda, String combustivel, double potencia) {
+	private String marca;
+	private String modelo;
+
+	public Veiculos(int roda, String combustivel, double potencia, double tanque, String marca, String modelo) {
 		super();
 		this.roda = roda;
 		this.combustivel = combustivel;
 		this.potencia = potencia;
+		this.tanque = tanque;
+		this.marca = marca;
+		this.modelo = modelo;
 	}
 
 	public Veiculos() {
@@ -47,6 +52,22 @@ public class Veiculos {
 
 	public void setTanque(double tanque) {
 		this.tanque = tanque;
+	}
+	
+	public String getMarca() {
+		return marca;
+	}
+
+	public void setMarca(String marca) {
+		this.marca = marca;
+	}
+
+	public String getModelo() {
+		return modelo;
+	}
+
+	public void setModelo(String modelo) {
+		this.modelo = modelo;
 	}
 
 	public void acelera() {

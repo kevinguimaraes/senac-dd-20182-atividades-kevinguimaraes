@@ -3,13 +3,10 @@ package exercicios.aula4;
 public class Caminhao extends Veiculos {
 	private int eixos;
 
-	public Caminhao(int roda, String combustivel, double potencia, int eixos) {
-		super(roda, combustivel, potencia);
+	public Caminhao(int roda, String combustivel, double potencia, double tanque, String marca, String modelo,
+			int eixos) {
+		super(roda, combustivel, potencia, tanque, marca, modelo);
 		this.eixos = eixos;
-	}
-
-	public Caminhao(int roda, String combustivel, double potencia) {
-		super(roda, combustivel, potencia);
 	}
 
 	public int getEixos() {

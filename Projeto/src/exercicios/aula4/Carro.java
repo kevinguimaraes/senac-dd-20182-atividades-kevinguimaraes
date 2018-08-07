@@ -3,13 +3,10 @@ package exercicios.aula4;
 public class Carro extends Veiculos{
 	private double portamala;
 
-	public Carro(int roda, String combustivel, double potencia, double portamala) {
-		super(roda, combustivel, potencia);
+	public Carro(int roda, String combustivel, double potencia, double tanque, String marca, String modelo,
+			double portamala) {
+		super(roda, combustivel, potencia, tanque, marca, modelo);
 		this.portamala = portamala;
-	}
-
-	public Carro(int roda, String combustivel, double potencia) {
-		super(roda, combustivel, potencia);
 	}
 
 	public double getPortamala() {
