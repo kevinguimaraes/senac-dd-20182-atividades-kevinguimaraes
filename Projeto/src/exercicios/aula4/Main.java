@@ -4,10 +4,11 @@ package exercicios.aula4;
 public class Main {
 
 	public static void main(String[] args){
+		Carroceria car = new Carroceria(100, true);
 		
 		Carro c1 = new Carro(4,"Gasolina",120, 45,"Citroen", "C3", 400);
 		Moto m1 = new Moto(2, "Gasolina", 600, 20, "Kawasaki", "Ninja");
-		Caminhao cam1 = new Caminhao(10, "Disel", 200, 100, "Volvo", "F1000", 2);
+		Caminhao cam1 = new Caminhao(10, "Disel", 200, 100, "Volvo", "F1000", 2, car);
 		
 		System.out.println("Carro acelerando: ");
 		c1.acelera();
@@ -24,6 +25,9 @@ public class Main {
 		System.out.println("Caminhao carregando e descarregando");
 		cam1.carregar();
 		cam1.descarregar();
+		
+		System.out.println("Carroceria esta: ");
+		cam1.getCarroceria().status();
 	}
 
 }
