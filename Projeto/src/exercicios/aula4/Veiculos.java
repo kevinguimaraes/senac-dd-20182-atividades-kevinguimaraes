@@ -6,7 +6,7 @@ public class Veiculos {
 	private double potencia;
 	private double tanque;
 	private String marca;
-	private String modelo; 
+	private String modelo;   
 
 	public Veiculos(int roda, String combustivel, double potencia, double tanque, String marca, String modelo) {
 		super();

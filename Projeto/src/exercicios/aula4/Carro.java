@@ -9,7 +9,7 @@ public class Carro extends Veiculos{
 		this.portamala = portamala;
 	}
 
-	public double getPortamala() {
+	public double getPortamala() { 
 		return portamala;
 	}
 

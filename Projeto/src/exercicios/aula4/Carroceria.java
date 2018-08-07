@@ -4,7 +4,7 @@ public class Carroceria {
 	private double tamanho;
 	private boolean cheio;
 	
-	public Carroceria(double tamanho, boolean cheio) {
+	public Carroceria(double tamanho, boolean cheio) { 
 		super();
 		this.tamanho = tamanho;
 		this.cheio = cheio;

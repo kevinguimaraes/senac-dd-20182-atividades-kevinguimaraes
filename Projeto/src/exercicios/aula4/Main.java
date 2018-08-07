@@ -4,7 +4,7 @@ package exercicios.aula4;
 public class Main {
 
 	public static void main(String[] args){ 
-		Carroceria car = new Carroceria(100, true);
+		Carroceria car = new Carroceria(100, true); 
 		
 		Carro c1 = new Carro(4,"Gasolina",120, 45,"Citroen", "C3", 400);
 		Moto m1 = new Moto(2, "Gasolina", 600, 20, "Kawasaki", "Ninja");
