@@ -1,5 +1,7 @@
 package exercicios.aula4;
 
+import javax.swing.JOptionPane;
+
 public class Carro extends Veiculos{
 	private double portamala;
 
@@ -7,6 +9,10 @@ public class Carro extends Veiculos{
 			double portamala) { 
 		super(roda, combustivel, potencia, tanque, marca, modelo);
 		this.portamala = portamala;
+	}
+	
+	public Carro() {
+		
 	}
 
 	public double getPortamala() { 
@@ -20,4 +26,9 @@ public class Carro extends Veiculos{
 	public void passear() {
 		System.out.println("Passeando");
 	}
+	
+	public void printCarro() {
+		JOptionPane.showMessageDialog(null, this.printVeiculo() + "\nPorta mala: " + this.portamala);
+	}
+	
 }

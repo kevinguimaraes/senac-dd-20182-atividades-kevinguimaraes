@@ -84,5 +84,15 @@ public class Veiculos {
 		else
 			System.out.println("Tanque cheio");
 	}
+	
+	public String printVeiculo() {
+		String tmp =  "Numero de rodas: " + this.getRoda()
+			+ "\nCombustivel: " + this.getCombustivel()
+			+ "\nLitros tanque: " + this.getTanque()
+			+ "\nPotencia: " + this.getPotencia()
+			+ "\nMarca: " + this.getMarca()
+			+ "\nModelo: " + this.getModelo();
+		return tmp;
+	}
 
 }
