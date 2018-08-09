@@ -6,6 +6,10 @@ public class Moto extends Veiculos {
 		super(roda, combustivel, potencia, tanque, marca, modelo);
 	}
 	
+	public Moto() {
+		
+	}
+	
 	public void empinar() {
 		System.out.println("Empinando");
 	}

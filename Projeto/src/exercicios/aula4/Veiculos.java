@@ -1,6 +1,7 @@
 package exercicios.aula4;
 
 public class Veiculos {
+	private int id;
 	private int roda;
 	private String combustivel;
 	private double potencia;
@@ -20,6 +21,14 @@ public class Veiculos {
 
 	public Veiculos() {
 		super();
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public int getRoda() {

@@ -9,6 +9,10 @@ public class Caminhao extends Veiculos {
 		this.eixos = eixos;
 		this.carroceria = carroceria;
 	}
+	
+	public Caminhao() {
+		
+	}
 
 	public int getEixos() {
 		return eixos;
