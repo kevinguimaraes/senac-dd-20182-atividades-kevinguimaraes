@@ -97,9 +97,8 @@ public class Menu {
 				{
 					for(int i = 0; i < v.size(); i++)
 					{
-						ArrayList<Veiculos> vaux = new ArrayList<>();
 						if ((v.get(i) instanceof  Carro) || (v.get(i) instanceof  Caminhao))
-							estou aqui
+							JOptionPane.showMessageDialog(null, v.get(i).printVeiculo());
 					}
 					break;
 				}
