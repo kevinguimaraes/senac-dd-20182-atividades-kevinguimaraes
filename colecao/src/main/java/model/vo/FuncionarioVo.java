@@ -19,7 +19,7 @@ public class FuncionarioVo {
 		super();
 	}
 	
-	public int getIdfuncionario() {
+	public int getIdFuncionario() {
 		return idfuncionario;
 	}
 

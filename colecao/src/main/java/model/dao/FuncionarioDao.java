@@ -49,7 +49,7 @@ public class FuncionarioDao {
 		return resultado;
 	}
 
-	public boolean existeResgistroPorIdfuncionario(int id) {
+	public boolean existeResgistroPorIdFuncionario(int id) {
 		Connection conn = Banco.getConnection();
 		Statement stmt = Banco.getStatement(conn);
 		ResultSet resultado = null;
@@ -75,7 +75,7 @@ public class FuncionarioDao {
 		Connection conn = Banco.getConnection();
 		Statement stmt = Banco.getStatement(conn);
 		int resultado = 0;
-		String query =  "update funcionario set nome = '" + funcionarioVo.getNome() + "', cpf = '" + funcionarioVo.getCpf() + "', telefone = '" + funcionarioVo.getCargo() + "' where idfuncionario = " + funcionarioVo.getIdfuncionario();
+		String query =  "update funcionario set nome = '" + funcionarioVo.getNome() + "', cpf = '" + funcionarioVo.getCpf() + "', telefone = '" + funcionarioVo.getCargo() + "' where idfuncionario = " + funcionarioVo.getIdFuncionario();
 		
 		try {
 			resultado = stmt.executeUpdate(query);
@@ -92,7 +92,7 @@ public class FuncionarioDao {
 		Connection conn = Banco.getConnection();
 		Statement stmt = Banco.getStatement(conn);
 		int resultado = 0;
-		String query = "delete from funcionario where idfuncionario = " + funcionarioVo.getIdfuncionario();
+		String query = "delete from funcionario where idfuncionario = " + funcionarioVo.getIdFuncionario();
 		
 		try {
 			resultado = stmt.executeUpdate(query);
@@ -111,7 +111,7 @@ public class FuncionarioDao {
 		ResultSet resultado = null;
 		FuncionarioVo funcionario = new FuncionarioVo();
 
-		String query = "select * from funcionario where idfuncionario = " + funcionarioVo.getIdfuncionario();
+		String query = "select * from funcionario where idfuncionario = " + funcionarioVo.getIdFuncionario();
 		
 		try {
 			resultado = stmt.executeQuery(query);

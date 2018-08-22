@@ -28,7 +28,7 @@ public class ProdutoDao {
 		return resultado;
 	}
 
-	public boolean existeResgistroPorIdproduto(int id) {
+	public boolean existeResgistroPorIdProduto(int id) {
 		Connection conn = Banco.getConnection();
 		Statement stmt = Banco.getStatement(conn);
 		ResultSet resultado = null;
@@ -94,7 +94,7 @@ public class ProdutoDao {
 		try {
 			resultado = stmt.executeQuery(query);
 			resultado.next();
-			produto.setIdproduto(Integer.parseInt(resultado.getString(1)));
+			produto.setIdProduto(Integer.parseInt(resultado.getString(1)));
 			produto.setNome(resultado.getString(2));
 			produto.setMarca(resultado.getString(3));
 			produto.setPeso(Double.parseDouble(resultado.getString(4)));
@@ -121,7 +121,7 @@ public class ProdutoDao {
 			resultado = stmt.executeQuery(query);
 			while(resultado.next()) {
 				ProdutoVo produtoVo = new ProdutoVo();
-				produtoVo.setIdproduto(Integer.parseInt(resultado.getString(1)));
+				produtoVo.setIdProduto(Integer.parseInt(resultado.getString(1)));
 				produtoVo.setNome(resultado.getString(2));
 				produtoVo.setMarca(resultado.getString(3));
 				produtoVo.setPeso(Double.parseDouble(resultado.getString(4)));

@@ -2,6 +2,8 @@ package model.bo;
 
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import model.dao.FuncionarioDao;
 import model.vo.FuncionarioVo;
 
@@ -10,36 +12,36 @@ public class FuncionarioBo {
 	public static void cadastrarFuncionarioBo(FuncionarioVo funcionarioVo) {
 		FuncionarioDao funcionarioDao = new FuncionarioDao();
 		if(funcionarioDao.existeRegistroPorCpf(funcionarioVo.getCpf()))
-			System.out.println("\nFuncionario já Cadastrado");
+			JOptionPane.showMessageDialog(null, "Ja cadastrado", "ERROR", JOptionPane.ERROR_MESSAGE);
 		else {
 			int resultado = funcionarioDao.cadastrarFuncionarioDao(funcionarioVo);
 			if(resultado == 1)
-				System.out.println("\nFuncionario Cadastrado com Sucesso");
+				JOptionPane.showMessageDialog(null, "OK", "ERROR", JOptionPane.INFORMATION_MESSAGE);
 			else
-				System.out.println("\nNão foi possivel cadastrar funcionario");
+				JOptionPane.showMessageDialog(null, "ERRO", "ERROR", JOptionPane.ERROR_MESSAGE);
 		}
 		
 	}
 
 	public static void atualizarFuncionarioBo(FuncionarioVo funcionarioVo) {
 		FuncionarioDao funcionarioDao = new FuncionarioDao();
-		if(funcionarioDao.existeResgistroPorIdfuncionario(funcionarioVo.getIdfuncionario())) {
+		if(funcionarioDao.existeResgistroPorIdFuncionario(funcionarioVo.getIdFuncionario())) {
 			int resultado = funcionarioDao.atualizarFuncionarioDao(funcionarioVo);
 			if(resultado == 1)
-				System.out.println("\nFuncionario atualizado com Sucesso");
+				JOptionPane.showMessageDialog(null, "OK", "ERROR", JOptionPane.INFORMATION_MESSAGE);
 			else
-				System.out.println("\nNão foi possivel atualizar funcionario");
+				JOptionPane.showMessageDialog(null, "ERRO", "ERROR", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
 	public static void excluirFuncionarioBo(FuncionarioVo funcionarioVo) {
 		FuncionarioDao funcionarioDao = new FuncionarioDao();
-		if(funcionarioDao.existeResgistroPorIdfuncionario(funcionarioVo.getIdfuncionario())) {
+		if(funcionarioDao.existeResgistroPorIdFuncionario(funcionarioVo.getIdFuncionario())) {
 			int resultado = funcionarioDao.excluirFuncionarioDao(funcionarioVo);
 			if(resultado == 1)
 				System.out.println("\nFuncionario excluir com Sucesso");
 			else
-				System.out.println("\nNão foi possivel excluir funcionario");
+				JOptionPane.showMessageDialog(null, "ERRO", "ERROR", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
@@ -47,7 +49,7 @@ public class FuncionarioBo {
 		FuncionarioDao funcionarioDao = new FuncionarioDao();
 		ArrayList<FuncionarioVo> funcionarioesVo = funcionarioDao.consultarTodosFuncionariosDao();
 		if(funcionarioesVo.isEmpty())
-			System.out.println("\nNão foram localizados funcionarioes na base de daos");
+			JOptionPane.showMessageDialog(null, "ERRO", "ERROR", JOptionPane.ERROR_MESSAGE);
 		return funcionarioesVo;
 	}
 
@@ -55,7 +57,7 @@ public class FuncionarioBo {
 		FuncionarioDao funcionarioDao = new FuncionarioDao();
 		FuncionarioVo funcionario = funcionarioDao.consultarFuncionarioDao(funcionarioVo);
 		if(funcionario == null)
-			System.out.println("\nFuncionario não localizado na base de dados");
+			JOptionPane.showMessageDialog(null, "ERRO", "ERROR", JOptionPane.ERROR_MESSAGE);
 		return funcionario;
 	}
 }

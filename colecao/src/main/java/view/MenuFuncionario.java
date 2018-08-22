@@ -62,8 +62,8 @@ public class MenuFuncionario {
 		
 		funcionarioVo.setCargo(JOptionPane.showInputDialog("Digite o cargo do funcionario"));
 				
-		ControladoraFuncionario controladoraColecionadro = new ControladoraFuncionario();
-		controladoraColecionadro.cadastrarFuncionarioController(funcionarioVo);
+		ControladoraFuncionario controladoraFuncionario = new ControladoraFuncionario();
+		controladoraFuncionario.cadastrarFuncionarioController(funcionarioVo);
 	}
 	
 	private void consultarFuncionario() {
@@ -124,8 +124,8 @@ public class MenuFuncionario {
 		
 		funcionarioVo.setCargo(JOptionPane.showInputDialog("Digite o cargo do funcionario"));
 				
-		ControladoraFuncionario controladoraColecionadro = new ControladoraFuncionario();
-		controladoraColecionadro.atualizarFuncionarioController(funcionarioVo);	
+		ControladoraFuncionario controladoraFuncionario = new ControladoraFuncionario();
+		controladoraFuncionario.atualizarFuncionarioController(funcionarioVo);	
 		
 	}
 
@@ -135,8 +135,8 @@ public class MenuFuncionario {
 		
 		funcionarioVo.setIdfuncionario(Integer.parseInt(JOptionPane.showInputDialog("Digite o codigo do funcionario")));
 		
-		ControladoraFuncionario controladoraColecionadro = new ControladoraFuncionario();
-		controladoraColecionadro.excluirFuncionarioController(funcionarioVo);			
+		ControladoraFuncionario controladoraFuncionario = new ControladoraFuncionario();
+		controladoraFuncionario.excluirFuncionarioController(funcionarioVo);			
 		
 	}
 

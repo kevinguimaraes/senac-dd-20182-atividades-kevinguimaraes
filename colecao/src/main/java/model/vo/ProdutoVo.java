@@ -28,7 +28,7 @@ public class ProdutoVo
 		return idproduto;
 	}
 
-	public void setIdproduto(int idproduto) {
+	public void setIdProduto(int idproduto) {
 		this.idproduto = idproduto;
 	}
 

@@ -93,7 +93,7 @@ public class MenuProduto {
 			case 2: {				
 				opcao = 3;
 				ProdutoVo produtoVo = new ProdutoVo();
-				produtoVo.setIdproduto(Integer.parseInt(JOptionPane.showInputDialog("Informe o código do Produto")));
+				produtoVo.setIdProduto(Integer.parseInt(JOptionPane.showInputDialog("Informe o código do Produto")));
 				ProdutoVo produto = controladoraProduto.consultarProdutoController(produtoVo);
 	
 				produto.imprimir();
@@ -115,7 +115,7 @@ public class MenuProduto {
 		
 		ProdutoVo produtoVo = new ProdutoVo();
 		
-		produtoVo.setIdproduto(Integer.parseInt(JOptionPane.showInputDialog("Digite o codigo do produto")));
+		produtoVo.setIdProduto(Integer.parseInt(JOptionPane.showInputDialog("Digite o codigo do produto")));
 		
 		produtoVo.setNome(JOptionPane.showInputDialog("Digite o codigo do produto"));
 		
@@ -134,7 +134,7 @@ public class MenuProduto {
 		
 		ProdutoVo produtoVo = new ProdutoVo();
 		
-		produtoVo.setIdproduto(Integer.parseInt(JOptionPane.showInputDialog("Digite o codigo do produto")));
+		produtoVo.setIdProduto(Integer.parseInt(JOptionPane.showInputDialog("Digite o codigo do produto")));
 		
 		ControladoraProduto controladoraProduto = new ControladoraProduto();
 		controladoraProduto.excluirProdutoController(produtoVo);			
