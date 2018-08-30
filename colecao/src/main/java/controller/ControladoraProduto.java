@@ -3,6 +3,7 @@ package controller;
 import java.util.ArrayList;
 
 import model.bo.ProdutoBo;
+import model.dao.ProdutoDao;
 import model.vo.ProdutoVo;
 
 public class ControladoraProduto {
@@ -30,5 +31,10 @@ public class ControladoraProduto {
 	public ProdutoVo  consultarProdutoController(ProdutoVo produtoVo) {
 		ProdutoBo produtosBo = new ProdutoBo();
 		return produtosBo.consultarProdutoBo(produtoVo);
+	}
+	
+	public boolean existeResgistroPorIdProdutoController(int id) {
+		ProdutoDao produtodDao = new ProdutoDao();
+		return produtodDao.existeResgistroPorIdProduto(id);
 	}
 }
