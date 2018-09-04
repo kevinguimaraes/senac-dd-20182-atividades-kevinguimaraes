@@ -33,6 +33,16 @@ public class ControladoraProduto {
 		return produtosBo.consultarProdutoBo(produtoVo);
 	}
 	
+	public ProdutoVo  consultarProdutoPorNomeController(ProdutoVo produtoVo) {
+		ProdutoBo produtosBo = new ProdutoBo();
+		return produtosBo.consultarProdutoPorNomeBo(produtoVo);
+	}
+	
+	public ProdutoVo  consultarProdutoPorMarcaController(ProdutoVo produtoVo) {
+		ProdutoBo produtosBo = new ProdutoBo();
+		return produtosBo.consultarProdutoPorMarcaBo(produtoVo);
+	}
+	
 	public boolean existeResgistroPorIdProdutoController(int id) {
 		ProdutoDao produtodDao = new ProdutoDao();
 		return produtodDao.existeResgistroPorIdProduto(id);

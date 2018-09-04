@@ -55,5 +55,21 @@ public class ProdutoBo {
 			System.out.println("\nProduto não localizado na base de dados");
 		return produto;
 	}
+	
+	public ProdutoVo consultarProdutoPorNomeBo(ProdutoVo produtoVo) {
+		ProdutoDao produtoDao = new ProdutoDao();
+		ProdutoVo produto = produtoDao.consultarProdutoPorNomeDao(produtoVo);
+		if(produto == null)
+			System.out.println("\nProduto não localizado na base de dados");
+		return produto;
+	}
+	
+	public ProdutoVo consultarProdutoPorMarcaBo(ProdutoVo produtoVo) {
+		ProdutoDao produtoDao = new ProdutoDao();
+		ProdutoVo produto = produtoDao.consultarProdutoPorMarcaDao(produtoVo);
+		if(produto == null)
+			System.out.println("\nProduto não localizado na base de dados");
+		return produto;
+	}
 
 }

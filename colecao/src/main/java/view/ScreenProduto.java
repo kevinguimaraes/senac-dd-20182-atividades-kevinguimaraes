@@ -26,6 +26,8 @@ public class ScreenProduto {
 	private JTextField txtPeso;
 	private JLabel lblId;
 	private JTextField txtId;
+	private JButton bLimpar;
+	private JButton btnDelete;
 
 	/**
 	 * Launch the application.
@@ -56,7 +58,7 @@ public class ScreenProduto {
 	private void initialize() {
 		frmCadastrarProduto = new JFrame();
 		frmCadastrarProduto.setTitle("Cadastrar Produto");
-		frmCadastrarProduto.setBounds(100, 100, 295, 211);
+		frmCadastrarProduto.setBounds(100, 100, 247, 253);
 		frmCadastrarProduto.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmCadastrarProduto.getContentPane().setLayout(null);
 		
@@ -77,12 +79,12 @@ public class ScreenProduto {
 		frmCadastrarProduto.getContentPane().add(lblPreo);
 		
 		txtNome = new JTextField();
-		txtNome.setBounds(100, 38, 170, 20);
+		txtNome.setBounds(100, 38, 122, 20);
 		frmCadastrarProduto.getContentPane().add(txtNome);
 		txtNome.setColumns(10);
 		
 		txtMarca = new JTextField();
-		txtMarca.setBounds(100, 63, 170, 20);
+		txtMarca.setBounds(100, 63, 122, 20);
 		frmCadastrarProduto.getContentPane().add(txtMarca);
 		txtMarca.setColumns(10);
 		
@@ -94,7 +96,7 @@ public class ScreenProduto {
 					
 			}
 		});
-		txtPreco.setBounds(100, 113, 170, 20);
+		txtPreco.setBounds(100, 113, 122, 20);
 		frmCadastrarProduto.getContentPane().add(txtPreco);
 		txtPreco.setColumns(10);
 		
@@ -102,6 +104,7 @@ public class ScreenProduto {
 		bSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				ProdutoVo produto = new ProdutoVo();
+				ProdutoVo produtoaux = new ProdutoVo();
 				try {
 					produto.setIdProduto(Integer.parseInt(txtId.getText()));
 				} catch(Exception e){
@@ -118,18 +121,21 @@ public class ScreenProduto {
 				{
 					if(controladoraProduto.existeResgistroPorIdProdutoController(produto.getIdproduto()))
 					{
-						produto = controladoraProduto.consultarProdutoController(produto);
-						txtId.setText(produto.getIdproduto() + "");
-						txtNome.setText(produto.getNome());
-						txtMarca.setText(produto.getMarca());
-						txtPreco.setText(produto.getPreco()+ "");
-						txtPeso.setText(produto.getPeso()+"");
+						produtoaux = controladoraProduto.consultarProdutoController(produto);
+						txtId.setText(produtoaux.getIdproduto() + "");
+						txtNome.setText(produtoaux.getNome());
+						txtMarca.setText(produtoaux.getMarca());
+						txtPreco.setText(produtoaux.getPreco()+ "");
+						txtPeso.setText(produtoaux.getPeso()+"");
 						if (JOptionPane.showConfirmDialog(null, "Deseja Atualizar") == JOptionPane.YES_OPTION)
 							controladoraProduto.atualizarProdutoController(produto);
 					}
+					else
+						controladoraProduto.cadastrarProdutoController(produto);
 				}
 				else
 					controladoraProduto.cadastrarProdutoController(produto);
+				
 				
 				txtId.setText("");
 				txtNome.setText("");
@@ -138,11 +144,11 @@ public class ScreenProduto {
 				txtPeso.setText("");
 			}
 		});
-		bSalvar.setBounds(10, 144, 260, 23);
+		bSalvar.setBounds(10, 186, 94, 23);
 		frmCadastrarProduto.getContentPane().add(bSalvar);
 		
 		txtPeso = new JTextField();
-		txtPeso.setBounds(100, 88, 170, 20);
+		txtPeso.setBounds(100, 88, 122, 20);
 		frmCadastrarProduto.getContentPane().add(txtPeso);
 		txtPeso.setColumns(10);
 		
@@ -151,8 +157,114 @@ public class ScreenProduto {
 		frmCadastrarProduto.getContentPane().add(lblId);
 		
 		txtId = new JTextField();
-		txtId.setBounds(100, 11, 170, 20);
+		txtId.setBounds(100, 11, 122, 20);
 		frmCadastrarProduto.getContentPane().add(txtId);
 		txtId.setColumns(10);
+		
+		JButton bBuscar = new JButton("Buscar");
+		bBuscar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ProdutoVo produto = new ProdutoVo();
+				ControladoraProduto controladoraProduto = new ControladoraProduto();
+				
+				try {
+				produto.setIdProduto(Integer.parseInt(txtId.getText()));
+				}catch (Exception e) {
+					produto.setIdProduto(0);
+				}
+				
+				produto.setNome(txtNome.getText());
+				produto.setMarca(txtMarca.getText());
+				try {
+				produto.setPeso(Double.parseDouble(txtPeso.getText()));
+				produto.setPreco(Double.parseDouble(txtPreco.getText()));
+				}catch(Exception e) {
+					produto.setPeso(0);
+					produto.setPreco(0);
+					
+				}
+				if (produto.getIdproduto() > 0)
+					produto = controladoraProduto.consultarProdutoController(produto);
+				else if (!produto.getNome().equals(""))
+					produto = controladoraProduto.consultarProdutoPorNomeController(produto);
+				else
+					produto = controladoraProduto.consultarProdutoPorMarcaController(produto);
+				
+				if(produto.getIdproduto() == 0)
+				{
+					JOptionPane.showMessageDialog(null, "Produto não encontrado", "ERROR", JOptionPane.ERROR_MESSAGE);
+					txtId.setText("");
+					txtNome.setText("");
+					txtMarca.setText("");
+					txtPreco.setText("");
+					txtPeso.setText("");
+				} 
+				else
+				{
+					txtId.setText(produto.getIdproduto() + "");
+					txtNome.setText(produto.getNome());
+					txtMarca.setText(produto.getMarca());
+					txtPreco.setText(produto.getPreco()+ "");
+					txtPeso.setText(produto.getPeso()+"");
+				}
+				
+				
+			}
+		});
+		bBuscar.setBounds(128, 152, 94, 23);
+		frmCadastrarProduto.getContentPane().add(bBuscar);
+		
+		bLimpar = new JButton("Limpar");
+		bLimpar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				txtId.setText("");
+				txtNome.setText("");
+				txtMarca.setText("");
+				txtPreco.setText("");
+				txtPeso.setText("");
+			}
+		});
+		bLimpar.setBounds(10, 152, 94, 23);
+		frmCadastrarProduto.getContentPane().add(bLimpar);
+		
+		btnDelete = new JButton("Delete");
+		btnDelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				ProdutoVo produto = new ProdutoVo();
+				ControladoraProduto controladoraProduto = new ControladoraProduto();
+				
+				produto.setIdProduto(Integer.parseInt(txtId.getText()));
+				produto.setNome(txtNome.getText());
+				produto.setMarca(txtMarca.getText());
+				try {
+				produto.setPeso(Double.parseDouble(txtPeso.getText()));
+				produto.setPreco(Double.parseDouble(txtPreco.getText()));
+				}catch(Exception d) {
+					produto.setPeso(0);
+					produto.setPreco(0);
+					
+				}
+				produto = controladoraProduto.consultarProdutoController(produto);
+				
+				txtId.setText(produto.getIdproduto() + "");
+				txtNome.setText(produto.getNome());
+				txtMarca.setText(produto.getMarca());
+				txtPreco.setText(produto.getPreco()+ "");
+				txtPeso.setText(produto.getPeso()+"");
+				
+				if (JOptionPane.showConfirmDialog(null, "Deseja Excluir") == JOptionPane.YES_OPTION)
+					controladoraProduto.excluirProdutoController(produto);
+				
+				txtId.setText("");
+				txtNome.setText("");
+				txtMarca.setText("");
+				txtPreco.setText("");
+				txtPeso.setText("");
+				
+			}
+		});
+		btnDelete.setBounds(129, 186, 93, 23);
+		frmCadastrarProduto.getContentPane().add(btnDelete);
 	}
 }

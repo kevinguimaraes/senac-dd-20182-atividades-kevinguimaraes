@@ -109,6 +109,58 @@ public class ProdutoDao {
 		
 		return produto;
 	}
+	
+	public ProdutoVo consultarProdutoPorNomeDao(ProdutoVo produtoVo) {
+		Connection conn = Banco.getConnection();
+		Statement stmt = Banco.getStatement(conn);
+		ResultSet resultado = null;
+		ProdutoVo produto = new ProdutoVo();
+		String query = "select * from produto where nome like '" + produtoVo.getNome() + "%'";
+		
+		try {
+			resultado = stmt.executeQuery(query);
+			resultado.next();
+			produto.setIdProduto(Integer.parseInt(resultado.getString(1)));
+			produto.setNome(resultado.getString(2));
+			produto.setMarca(resultado.getString(3));
+			produto.setPeso(Double.parseDouble(resultado.getString(4)));
+			produto.setPreco(Double.parseDouble(resultado.getString(5)));
+		} catch (SQLException e) {
+			System.out.println("Erro ao executar a Query de Consulta de Colecionador por Nome");
+		} finally {
+			Banco.closeResultSet(resultado);
+			Banco.closeStatement(stmt);
+			Banco.closeConnection(conn);
+		}
+		
+		return produto;
+	}
+	
+	public ProdutoVo consultarProdutoPorMarcaDao(ProdutoVo produtoVo) {
+		Connection conn = Banco.getConnection();
+		Statement stmt = Banco.getStatement(conn);
+		ResultSet resultado = null;
+		ProdutoVo produto = new ProdutoVo();
+		String query = "select * from produto where marca like '" + produtoVo.getMarca() + "%'";
+		
+		try {
+			resultado = stmt.executeQuery(query);
+			resultado.next();
+			produto.setIdProduto(Integer.parseInt(resultado.getString(1)));
+			produto.setNome(resultado.getString(2));
+			produto.setMarca(resultado.getString(3));
+			produto.setPeso(Double.parseDouble(resultado.getString(4)));
+			produto.setPreco(Double.parseDouble(resultado.getString(5)));
+		} catch (SQLException e) {
+			System.out.println("Erro ao executar a Query de Consulta de Colecionador por Marca");
+		} finally {
+			Banco.closeResultSet(resultado);
+			Banco.closeStatement(stmt);
+			Banco.closeConnection(conn);
+		}
+		
+		return produto;
+	}
 
 	public ArrayList<ProdutoVo> consultarTodosProdutoDao() {
 		Connection conn = Banco.getConnection();
