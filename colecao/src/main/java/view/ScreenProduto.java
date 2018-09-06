@@ -58,7 +58,7 @@ public class ScreenProduto {
 	private void initialize() {
 		frmCadastrarProduto = new JFrame();
 		frmCadastrarProduto.setTitle("Cadastrar Produto");
-		frmCadastrarProduto.setBounds(100, 100, 247, 253);
+		frmCadastrarProduto.setBounds(100, 100, 247, 259);
 		frmCadastrarProduto.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmCadastrarProduto.getContentPane().setLayout(null);
 		
@@ -164,50 +164,13 @@ public class ScreenProduto {
 		JButton bBuscar = new JButton("Buscar");
 		bBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				ProdutoVo produto = new ProdutoVo();
-				ControladoraProduto controladoraProduto = new ControladoraProduto();
 				
 				try {
-				produto.setIdProduto(Integer.parseInt(txtId.getText()));
-				}catch (Exception e) {
-					produto.setIdProduto(0);
+					ScreenListarProdutos frame = new ScreenListarProdutos();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
-				
-				produto.setNome(txtNome.getText());
-				produto.setMarca(txtMarca.getText());
-				try {
-				produto.setPeso(Double.parseDouble(txtPeso.getText()));
-				produto.setPreco(Double.parseDouble(txtPreco.getText()));
-				}catch(Exception e) {
-					produto.setPeso(0);
-					produto.setPreco(0);
-					
-				}
-				if (produto.getIdproduto() > 0)
-					produto = controladoraProduto.consultarProdutoController(produto);
-				else if (!produto.getNome().equals(""))
-					produto = controladoraProduto.consultarProdutoPorNomeController(produto);
-				else
-					produto = controladoraProduto.consultarProdutoPorMarcaController(produto);
-				
-				if(produto.getIdproduto() == 0)
-				{
-					JOptionPane.showMessageDialog(null, "Produto não encontrado", "ERROR", JOptionPane.ERROR_MESSAGE);
-					txtId.setText("");
-					txtNome.setText("");
-					txtMarca.setText("");
-					txtPreco.setText("");
-					txtPeso.setText("");
-				} 
-				else
-				{
-					txtId.setText(produto.getIdproduto() + "");
-					txtNome.setText(produto.getNome());
-					txtMarca.setText(produto.getMarca());
-					txtPreco.setText(produto.getPreco()+ "");
-					txtPeso.setText(produto.getPeso()+"");
-				}
-				
 				
 			}
 		});

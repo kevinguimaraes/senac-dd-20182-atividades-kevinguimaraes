@@ -56,17 +56,17 @@ public class ProdutoBo {
 		return produto;
 	}
 	
-	public ProdutoVo consultarProdutoPorNomeBo(ProdutoVo produtoVo) {
+	public ArrayList<ProdutoVo> consultarProdutoPorNomeBo(ProdutoVo produtoVo) {
 		ProdutoDao produtoDao = new ProdutoDao();
-		ProdutoVo produto = produtoDao.consultarProdutoPorNomeDao(produtoVo);
+		ArrayList<ProdutoVo> produto = produtoDao.consultarProdutoPorNomeDao(produtoVo);
 		if(produto == null)
 			System.out.println("\nProduto não localizado na base de dados");
 		return produto;
 	}
 	
-	public ProdutoVo consultarProdutoPorMarcaBo(ProdutoVo produtoVo) {
+	public ArrayList<ProdutoVo> consultarProdutoPorMarcaBo(ProdutoVo produtoVo) {
 		ProdutoDao produtoDao = new ProdutoDao();
-		ProdutoVo produto = produtoDao.consultarProdutoPorMarcaDao(produtoVo);
+		ArrayList<ProdutoVo> produto = produtoDao.consultarProdutoPorMarcaDao(produtoVo);
 		if(produto == null)
 			System.out.println("\nProduto não localizado na base de dados");
 		return produto;

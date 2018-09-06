@@ -33,12 +33,12 @@ public class ControladoraProduto {
 		return produtosBo.consultarProdutoBo(produtoVo);
 	}
 	
-	public ProdutoVo  consultarProdutoPorNomeController(ProdutoVo produtoVo) {
+	public ArrayList<ProdutoVo>  consultarProdutoPorNomeController(ProdutoVo produtoVo) {
 		ProdutoBo produtosBo = new ProdutoBo();
 		return produtosBo.consultarProdutoPorNomeBo(produtoVo);
 	}
 	
-	public ProdutoVo  consultarProdutoPorMarcaController(ProdutoVo produtoVo) {
+	public ArrayList<ProdutoVo>  consultarProdutoPorMarcaController(ProdutoVo produtoVo) {
 		ProdutoBo produtosBo = new ProdutoBo();
 		return produtosBo.consultarProdutoPorMarcaBo(produtoVo);
 	}
