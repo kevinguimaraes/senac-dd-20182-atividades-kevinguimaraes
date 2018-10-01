@@ -14,6 +14,8 @@ import javax.swing.JComboBox;
 import javax.swing.JButton;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -166,12 +168,19 @@ public class ScreenProduto {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				try {
-					ScreenListarProdutos frame = new ScreenListarProdutos();
+					final ScreenListarProdutos frame = new ScreenListarProdutos();
 					frame.setVisible(true);
+					
+					frame.addWindowListener(new WindowAdapter() {
+						@Override
+						public void windowClosing(WindowEvent arg0) {
+							ProdutoVo produto = frame.getProdutoSelecionado();
+							preencherTela(produto);
+						}
+					});
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				
 			}
 		});
 		bBuscar.setBounds(128, 152, 94, 23);
@@ -180,11 +189,7 @@ public class ScreenProduto {
 		bLimpar = new JButton("Limpar");
 		bLimpar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				txtId.setText("");
-				txtNome.setText("");
-				txtMarca.setText("");
-				txtPreco.setText("");
-				txtPeso.setText("");
+				limparTela();
 			}
 		});
 		bLimpar.setBounds(10, 152, 94, 23);
@@ -209,25 +214,34 @@ public class ScreenProduto {
 					
 				}
 				produto = controladoraProduto.consultarProdutoController(produto);
-				
-				txtId.setText(produto.getIdproduto() + "");
-				txtNome.setText(produto.getNome());
-				txtMarca.setText(produto.getMarca());
-				txtPreco.setText(produto.getPreco()+ "");
-				txtPeso.setText(produto.getPeso()+"");
+				preencherTela(produto);
 				
 				if (JOptionPane.showConfirmDialog(null, "Deseja Excluir") == JOptionPane.YES_OPTION)
 					controladoraProduto.excluirProdutoController(produto);
 				
-				txtId.setText("");
-				txtNome.setText("");
-				txtMarca.setText("");
-				txtPreco.setText("");
-				txtPeso.setText("");
+				limparTela();
 				
 			}
 		});
 		btnDelete.setBounds(129, 186, 93, 23);
 		frmCadastrarProduto.getContentPane().add(btnDelete);
 	}
+
+	protected void limparTela() {
+		txtId.setText("");
+		txtNome.setText("");
+		txtMarca.setText("");
+		txtPreco.setText("");
+		txtPeso.setText("");
+	}
+	
+	protected void preencherTela(ProdutoVo produto) {
+		txtId.setText(produto.getIdproduto() + "");
+		txtNome.setText(produto.getNome());
+		txtMarca.setText(produto.getMarca());
+		txtPreco.setText(produto.getPreco()+ "");
+		txtPeso.setText(produto.getPeso()+"");
+	}
+	
+	
 }

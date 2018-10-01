@@ -2,6 +2,7 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Frame;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -13,21 +14,29 @@ import model.vo.ProdutoVo;
 
 import javax.swing.JTable;
 import javax.swing.JButton;
+import javax.swing.JDialog;
+
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
-public class ScreenListarProdutos extends JFrame {
+public class ScreenListarProdutos extends JDialog {
 
 	private JPanel contentPane;
 	private JTable tProdutos;
 	private JTextField tID;
 	private JTextField tNome;
 	private JTextField tMarca;
-
+	private ProdutoVo produtoSelecionado;
+	private ArrayList<ProdutoVo> produtos;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -48,7 +57,7 @@ public class ScreenListarProdutos extends JFrame {
 	 * Create the frame.
 	 */
 	public ScreenListarProdutos() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -56,6 +65,14 @@ public class ScreenListarProdutos extends JFrame {
 		contentPane.setLayout(null);
 		
 		tProdutos = new JTable();
+		tProdutos.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int linha = tProdutos.getSelectedRow();
+				produtoSelecionado = produtos.get(linha);
+				
+			}
+		});
 		tProdutos.setModel(new DefaultTableModel(
 			new Object[][] {
 			},
@@ -71,7 +88,7 @@ public class ScreenListarProdutos extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				ProdutoVo produto = new ProdutoVo();
-				ArrayList<ProdutoVo> produtoesVo = new ArrayList<ProdutoVo>();
+				produtos = new ArrayList<ProdutoVo>();
 				ControladoraProduto controladoraProduto = new ControladoraProduto();
 				
 				try {
@@ -85,19 +102,19 @@ public class ScreenListarProdutos extends JFrame {
 				
 				if (produto.getIdproduto() > 0) {
 					produto = controladoraProduto.consultarProdutoController(produto);
-					produtoesVo.add(produto);
+					produtos.add(produto);
 					System.out.println("id");
 				}
 				else if (!produto.getNome().equals("")) {
-					produtoesVo = controladoraProduto.consultarProdutoPorNomeController(produto);
+					produtos = controladoraProduto.consultarProdutoPorNomeController(produto);
 					System.out.println("nome");
 				}
 				else if (!produto.getMarca().equals("")) {
-					produtoesVo = controladoraProduto.consultarProdutoPorMarcaController(produto);
+					produtos = controladoraProduto.consultarProdutoPorMarcaController(produto);
 					System.out.println("marca");
 				}
 				else {
-					produtoesVo = controladoraProduto.consultarTodosProdutoController();
+					produtos = controladoraProduto.consultarTodosProdutoController();
 					System.out.println("todos");
 				}
 				if(produto.getIdproduto() < 0)
@@ -109,7 +126,7 @@ public class ScreenListarProdutos extends JFrame {
 				} 
 				else
 				{
-					atualizarTabelaProdutos(produtoesVo);
+					atualizarTabelaProdutos(produtos);
 				}
 				
 				
@@ -168,5 +185,13 @@ public class ScreenListarProdutos extends JFrame {
 			};
 			modelo.addRow(novaLinha);
 		}
+	}
+
+	public ProdutoVo getProdutoSelecionado() {
+		return produtoSelecionado;
+	}
+
+	public void setProdutoSelecionado(ProdutoVo produtoSelecionado) {
+		this.produtoSelecionado = produtoSelecionado;
 	}
 }
