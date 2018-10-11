@@ -116,7 +116,7 @@ public class AlunoDAO {
 			ResultSet result = prepStmt.executeQuery();
 			
 			while(result.next()){
-				Aluno aluno = new Aluno();
+				Aluno aluno = new Aluno()
 				
 				aluno.setId(result.getInt("ID"));
 				aluno.setNome(result.getString("NOME"));
